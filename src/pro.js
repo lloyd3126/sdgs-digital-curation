@@ -1,8 +1,30 @@
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import './pro.css'
+import tailwindTheme from './pro.theme.css?raw'
+
+// Tailwind's browser CDN compiles this theme. Keep directives out of Vite's CSS minifier.
+const themeStyle = document.createElement('style')
+themeStyle.type = 'text/tailwindcss'
+themeStyle.textContent = tailwindTheme
+const stylesReady = new Promise((resolve) => {
+  const finish = () => {
+    observer.disconnect()
+    clearTimeout(timeout)
+    resolve()
+  }
+  const observer = new MutationObserver(() => {
+    if (getComputedStyle(document.documentElement).getPropertyValue('--pro-styles-ready').trim() === '1') finish()
+  })
+  const timeout = setTimeout(finish, 8000)
+  observer.observe(document.head, { childList: true, subtree: true, characterData: true })
+})
+document.head.append(themeStyle)
+history.scrollRestoration = 'manual'
 
 gsap.registerPlugin(ScrollTrigger)
+const scrollport = document.querySelector('#exhibition-scroll')
+ScrollTrigger.defaults({ scroller: scrollport })
 
 function renderIcons() {
   window.lucide?.createIcons({ attrs: { 'stroke-width': 1.75 } })
@@ -11,7 +33,7 @@ renderIcons()
 window.addEventListener('load', renderIcons, { once: true })
 
 function syncScrollbarSpace() {
-  const width = Math.max(0, window.innerWidth - document.documentElement.clientWidth)
+  const width = Math.max(0, scrollport.offsetWidth - scrollport.clientWidth)
   document.documentElement.style.setProperty('--scrollbar-space', `${width}px`)
 }
 syncScrollbarSpace()
@@ -38,24 +60,43 @@ document.addEventListener('keydown', (event) => {
 document.addEventListener('click', (event) => {
   if (!event.target.closest('.topbar') && menu.getAttribute('aria-expanded') === 'true') closeMenu()
 })
-window.matchMedia('(min-width: 821px)').addEventListener('change', (event) => {
+window.matchMedia('(min-width: 1024px)').addEventListener('change', (event) => {
   if (event.matches) closeMenu()
 })
 
+function goToSection(id, smooth = true, focus = true) {
+  const target = document.getElementById(id)
+  if (!target) return
+  if (target instanceof HTMLDetailsElement) target.open = true
+  if (focus) {
+    if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1')
+    target.focus({ preventScroll: true })
+  }
+  const top = scrollport.scrollTop + target.getBoundingClientRect().top - scrollport.getBoundingClientRect().top - 24
+  scrollport.scrollTo({ top: Math.max(0, top), behavior: smooth && !window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'smooth' : 'instant' })
+}
 document.querySelectorAll('a[href^="#"]').forEach((link) => {
   link.addEventListener('click', (event) => {
     if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return
-    const target = document.getElementById(link.getAttribute('href').slice(1))
-    if (!target) return
+    const id = link.getAttribute('href').slice(1)
+    if (!document.getElementById(id)) return
     event.preventDefault()
     closeMenu()
-    if (target instanceof HTMLDetailsElement) target.open = true
-    target.setAttribute('tabindex', '-1')
-    target.focus({ preventScroll: true })
-    target.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth', block: 'start' })
+    goToSection(id)
     if (location.hash !== link.hash) history.pushState(null, '', link.hash)
   })
 })
+function restoreHash() {
+  if (location.hash) goToSection(decodeURIComponent(location.hash.slice(1)), false, false)
+  else scrollport.scrollTo({ top: 0, behavior: 'instant' })
+}
+window.addEventListener('popstate', restoreHash)
+window.addEventListener('hashchange', restoreHash)
+let visitorInteracted = false
+for (const event of ['pointerdown', 'keydown', 'wheel', 'touchstart']) {
+  window.addEventListener(event, () => { visitorInteracted = true }, { once: true, passive: true })
+}
+restoreHash()
 
 const navLinks = [...document.querySelectorAll('[data-nav]')]
 const sectionObserver = new IntersectionObserver((entries) => {
@@ -65,7 +106,7 @@ const sectionObserver = new IntersectionObserver((entries) => {
       else link.removeAttribute('aria-current')
     })
   })
-}, { rootMargin: '-15% 0px -60% 0px', threshold: 0 })
+}, { root: scrollport, rootMargin: '-15% 0px -60% 0px', threshold: 0 })
 document.querySelectorAll('[data-section]').forEach((section) => sectionObserver.observe(section))
 
 const progress = document.querySelector('[data-progress]')
@@ -74,28 +115,28 @@ let progressFrame = 0
 function updateProgress() {
   if (progressFrame) return
   progressFrame = requestAnimationFrame(() => {
-    const max = document.documentElement.scrollHeight - window.innerHeight
-    progress.style.transform = `scaleX(${max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0})`
-    backTop.hidden = window.scrollY < window.innerHeight
-    if (window.scrollY < 500) navLinks.forEach((link) => link.removeAttribute('aria-current'))
+    const max = scrollport.scrollHeight - scrollport.clientHeight
+    progress.style.transform = `scaleX(${max > 0 ? Math.min(1, Math.max(0, scrollport.scrollTop / max)) : 0})`
+    backTop.hidden = scrollport.scrollTop < scrollport.clientHeight
+    if (scrollport.scrollTop < 500) navLinks.forEach((link) => link.removeAttribute('aria-current'))
     progressFrame = 0
   })
 }
-window.addEventListener('scroll', updateProgress, { passive: true })
+scrollport.addEventListener('scroll', updateProgress, { passive: true })
 window.addEventListener('resize', updateProgress, { passive: true })
 updateProgress()
 
 const metrics = {
   computer: {
     low: 27.82, all: 66.96,
-    takeaway: '收入最低的兩成家庭中，每 100 戶約有 28 戶擁有電腦。',
-    note: '電腦包含桌上型、筆記型和平板。這裡算的是家庭，不是孩子人數。',
+    takeaway: '同樣是收入最低的兩成家庭，每 100 戶約有 85 戶能上網，卻只有約 28 戶擁有電腦。能上網，不等於有電腦可用。',
+    note: '電腦包含桌上型、筆記型和平板。全體家庭平均也包含收入最低的兩成家庭。',
     name: '家裡有電腦',
   },
   internet: {
     low: 84.82, all: 96.09,
-    takeaway: '收入最低的兩成家庭中，每 100 戶約有 85 戶能在家上網。',
-    note: '能上網和有適合寫作業的電腦，是兩件不同的事。這裡算的是家庭。',
+    takeaway: '收入最低的兩成家庭中，每 100 戶約有 85 戶能在家上網。接著看看，擁有電腦的有幾戶？',
+    note: '比例以家庭為單位。全體家庭平均也包含收入最低的兩成家庭。',
     name: '家裡能上網',
   },
 }
@@ -139,17 +180,34 @@ for (let index = 0; index < 100; index += 1) {
 schoolGrid.append(schoolCells)
 
 const motion = gsap.matchMedia()
-motion.add('(prefers-reduced-motion: no-preference)', () => {
+stylesReady.then(() => motion.add('(prefers-reduced-motion: no-preference)', () => {
   gsap.from('.hero-copy > *', { y: 20, opacity: 0, duration: .7, stagger: .09, ease: 'power2.out' })
-  gsap.from('.desk-scene img', { y: 26, opacity: 0, duration: 1.1, ease: 'power2.out', delay: .2 })
+  gsap.from('.desk-art', { y: 26, opacity: 0, duration: 1.1, ease: 'power2.out', delay: .2 })
   document.querySelectorAll('[data-reveal]').forEach((item) => {
     gsap.fromTo(item, { y: 24, opacity: .45 }, { y: 0, opacity: 1, duration: .65, ease: 'power2.out', immediateRender: false, scrollTrigger: { trigger: item, start: 'top 90%', once: true } })
   })
   document.querySelectorAll('.comparison-fill, .expense-track > span').forEach((bar) => {
     gsap.fromTo(bar, { scaleX: 0 }, { scaleX: 1, duration: .85, ease: 'power2.out', scrollTrigger: { trigger: bar, start: 'top 93%', once: true } })
   })
+}))
+let layoutReady = false
+stylesReady.then(() => document.fonts.ready).then(() => {
+  layoutReady = true
+  syncScrollbarSpace()
+  ScrollTrigger.refresh()
+  if (!visitorInteracted) restoreHash()
 })
-document.fonts.ready.then(() => ScrollTrigger.refresh())
+new ResizeObserver(() => {
+  syncScrollbarSpace()
+  updateProgress()
+}).observe(scrollport)
+// CDN compilation, font loading and ScrollTrigger refreshes can change geometry
+// after native hash restoration. Keep the initial link aligned until interaction.
+const alignInitialLink = () => {
+  if (layoutReady && !visitorInteracted && location.hash) restoreHash()
+}
+new ResizeObserver(alignInitialLink).observe(document.querySelector('main'))
+ScrollTrigger.addEventListener('refresh', alignInitialLink)
 document.querySelectorAll('details').forEach((details) => details.addEventListener('toggle', () => ScrollTrigger.refresh(true)))
 
 const form = document.querySelector('[data-feedback-form]')
@@ -230,3 +288,9 @@ form.addEventListener('submit', async (event) => {
     submit.querySelector('[data-submit-icon]').hidden = false
   }
 })
+
+// Enable submission only after the handler and endpoint are ready.
+if (endpoint) {
+  submit.disabled = false
+  status.textContent = '填好必填項目，就可以送出。'
+}

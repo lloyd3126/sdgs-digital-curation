@@ -34,3 +34,7 @@ npm run preview
 **GitHub Pages：[https://lloyd3126.github.io/sdgs-digital-curation/](https://lloyd3126.github.io/sdgs-digital-curation/)**
 
 **Pro 頁面：[https://lloyd3126.github.io/sdgs-digital-curation/pro/](https://lloyd3126.github.io/sdgs-digital-curation/pro/)**
+
+## Pro 視覺與觀眾流程
+
+Pro 使用 Tailwind CSS 4.3.0 CDN、Noto Sans TC 與 Lucide CDN。純白底，配色採三個藍色加黑白。導覽列與展覽捲動區分開。逐項 user story、修正狀態與剩餘限制見 [Pro 檢查紀錄](docs/pro-audit.md)。Tailwind CDN 依使用者要求採用，官方定位為開發用途，未來可保留現有 utilities 改為建置產生樣式。
