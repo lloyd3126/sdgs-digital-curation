@@ -5,11 +5,11 @@
 ## 專案狀態
 
 - 已完成響應式展覽頁面雛形，採原生 HTML/CSS/JavaScript、Vite 與 GSAP／ScrollTrigger。
-- 展覽主題為「放學以後：完成一份作業，需要哪些條件？」；內容使用 2024 年家庭設備／教育支出資料與 113 學年度課後照顧統計，並在頁面標示來源及資料限制。
+- 首頁主題為「寫不完的作業」；內容使用 2024 年家庭設備／教育支出資料與 113 學年度課後照顧統計，並在頁面標示來源及資料限制。
 - 觀展回饋表單已串接使用者部署的 Google Apps Script Web App，欄位不收集姓名或聯絡方式。由於 Apps Script 的跨網域回應無法由靜態頁讀取，網站會如實提示「請求已送出、寫入尚未確認」，不會冒稱試算表已成功新增資料。
 - GitHub Pages 已部署並確認可用；正式網址見下方「發布」區段。
 - Apps Script 將由使用者直接在瀏覽器中設定；本專案不使用 Clasp。
-- 獨立的 `/pro/` 頁面名稱為「寫不完的作業」，以家庭設備、教育開銷與課後照顧串起孩子寫作業前的準備。使用 `pro/index.html`、`src/pro.js`、`src/pro.css` 與 `src/pro.theme.css`。原首頁的 HTML、CSS 與 JavaScript 保留，兩頁由 Vite 分別建置。
+- 首頁採用原 Pro 版本「寫不完的作業」，以家庭設備、教育開銷與課後照顧串起孩子寫作業前的準備。使用 `index.html`、`src/pro.js`、`src/pro.css` 與 `src/pro.theme.css`，插畫保留於 `pro/assets/`。原首頁「放學以後」保留於 `v1/index.html`，沿用 `src/main.js` 與 `src/style.css`。兩版由 Vite 分別建置，舊 `/pro/` 網址會保留章節位置並轉至首頁。
 
 ## 本機開發
 
@@ -33,14 +33,16 @@ npm run preview
 
 **GitHub Pages：[https://lloyd3126.github.io/sdgs-digital-curation/](https://lloyd3126.github.io/sdgs-digital-curation/)**
 
-**Pro 頁面：[https://lloyd3126.github.io/sdgs-digital-curation/pro/](https://lloyd3126.github.io/sdgs-digital-curation/pro/)**
+**原首頁 V1：[https://lloyd3126.github.io/sdgs-digital-curation/v1/index.html](https://lloyd3126.github.io/sdgs-digital-curation/v1/index.html)**
 
-## Pro 視覺與觀眾流程
+舊 [Pro 網址](https://lloyd3126.github.io/sdgs-digital-curation/pro/)會自動轉至首頁。
 
-Pro 使用 Tailwind CSS 4.3.0 CDN、Noto Sans TC 與 Lucide CDN。純白底，配色採三個藍色加黑白。導覽列與展覽捲動區分開。逐項 user story、修正狀態與剩餘限制見 [Pro 檢查紀錄](docs/pro-audit.md)。Tailwind CDN 依使用者要求採用，官方定位為開發用途，未來可保留現有 utilities 改為建置產生樣式。
+## 首頁視覺與觀眾流程
 
-## Pro 插畫
+首頁使用 Tailwind CSS 4.3.0 CDN、Noto Sans TC 與 Lucide CDN。純白底，配色採三個藍色加黑白。導覽列與展覽捲動區分開。逐項 user story、修正狀態與剩餘限制見 [Pro 檢查紀錄](docs/pro-audit.md)。Tailwind CDN 依使用者要求採用，官方定位為開發用途，未來可保留現有 utilities 改為建置產生樣式。
 
-Pro 保留生成的精簡動漫風格主視覺、圓弧書頁 Logo 與結尾插畫。主視覺共用四層 WebP 與完整橫向構圖，手機將圖文上下排列並縮減留白，小螢幕可自然捲動。三個主要章節以文字和互動圖表呈現，延伸問題與資料說明共用 modal，引用連結放在相關段落。頁面載入時等待 CDN、樣式與字體準備完成，並尊重減少動態效果設定。已提供分頁圖示與分享封面。
+## 首頁插畫
 
-實作與素材對照見 [Pro 插畫套用紀錄](docs/pro-artwork.md)。原首頁維持不變。
+首頁保留生成的精簡動漫風格主視覺、圓弧書頁 Logo 與結尾插畫。主視覺共用四層 WebP 與完整橫向構圖，手機將圖文上下排列並縮減留白，小螢幕可自然捲動。三個主要章節以文字和互動圖表呈現，延伸問題與資料說明共用 modal，引用連結放在相關段落。頁面載入時等待 CDN、樣式與字體準備完成，並尊重減少動態效果設定。已提供分頁圖示與分享封面。
+
+實作與素材對照見 [Pro 插畫套用紀錄](docs/pro-artwork.md)。原首頁內容保留於 `/v1/index.html`。

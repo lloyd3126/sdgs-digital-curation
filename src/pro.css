@@ -1,4 +1,4 @@
-/* Tailwind handles layout and components in pro/index.html. These rules cover
+/* Tailwind handles layout and components in index.html. These rules cover
    the dedicated scrollport, interaction states and bespoke data graphics. */
 :root { color-scheme: light; --header-height: 76px; --scrollbar-space: 0px; --navy: #0C2B4E; --ocean: #1D546C; }
 html, body { height: 100%; overflow: hidden; }
