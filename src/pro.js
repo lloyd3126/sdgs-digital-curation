@@ -132,12 +132,14 @@ const metrics = {
     takeaway: '同樣是收入最低的兩成家庭，每 100 戶約有 85 戶能上網，卻只有約 28 戶擁有電腦。能上網，不等於有電腦可用。',
     note: '電腦包含桌上型、筆記型和平板。全體家庭平均也包含收入最低的兩成家庭。',
     name: '家裡有電腦',
+    caption: '有了電腦，還要看看能不能在需要時輪到自己。',
   },
   internet: {
     low: 84.82, all: 96.09,
     takeaway: '收入最低的兩成家庭中，每 100 戶約有 85 戶能在家上網。接著看看，擁有電腦的有幾戶？',
     note: '比例以家庭為單位。全體家庭平均也包含收入最低的兩成家庭。',
     name: '家裡能上網',
+    caption: '手機也能上網，但打報告時，你還需要什麼？',
   },
 }
 document.querySelectorAll('[data-metric]').forEach((button) => {
@@ -148,6 +150,8 @@ document.querySelectorAll('[data-metric]').forEach((button) => {
       item.classList.toggle('selected', selected)
       item.setAttribute('aria-pressed', String(selected))
     })
+    document.querySelectorAll('[data-device-art]').forEach((image) => { image.hidden = image.dataset.deviceArt !== button.dataset.metric })
+    document.querySelector('[data-device-caption]').textContent = data.caption
     document.querySelector('[data-low-value]').textContent = data.low.toFixed(2)
     document.querySelector('[data-all-value]').textContent = data.all.toFixed(2)
     document.querySelector('[data-low-bar]').style.setProperty('--value', `${data.low}%`)
@@ -167,6 +171,7 @@ document.querySelectorAll('[data-question]').forEach((button) => {
   button.addEventListener('click', () => {
     document.querySelectorAll('[data-question]').forEach((item) => item.setAttribute('aria-pressed', String(item === button)))
     document.querySelector('[data-question-answer]').textContent = answers[button.dataset.question]
+    document.querySelectorAll('[data-question-art]').forEach((image) => { image.hidden = image.dataset.questionArt !== button.dataset.question })
   })
 })
 
@@ -182,7 +187,7 @@ schoolGrid.append(schoolCells)
 const motion = gsap.matchMedia()
 stylesReady.then(() => motion.add('(prefers-reduced-motion: no-preference)', () => {
   gsap.from('.hero-copy > *', { y: 20, opacity: 0, duration: .7, stagger: .09, ease: 'power2.out' })
-  gsap.from('.desk-art', { y: 26, opacity: 0, duration: 1.1, ease: 'power2.out', delay: .2 })
+  gsap.from('.hero-art', { y: 26, opacity: 0, duration: 1.1, ease: 'power2.out', delay: .2 })
   document.querySelectorAll('[data-reveal]').forEach((item) => {
     gsap.fromTo(item, { y: 24, opacity: .45 }, { y: 0, opacity: 1, duration: .65, ease: 'power2.out', immediateRender: false, scrollTrigger: { trigger: item, start: 'top 90%', once: true } })
   })
@@ -190,6 +195,19 @@ stylesReady.then(() => motion.add('(prefers-reduced-motion: no-preference)', () 
     gsap.fromTo(bar, { scaleX: 0 }, { scaleX: 1, duration: .85, ease: 'power2.out', scrollTrigger: { trigger: bar, start: 'top 93%', once: true } })
   })
 }))
+// The desk stays assembled. Small differences in scroll distance reveal its layers.
+stylesReady.then(() => motion.add('(min-width: 768px) and (prefers-reduced-motion: no-preference)', () => {
+  document.querySelectorAll('.hero-layer').forEach((layer) => {
+    gsap.to(layer, {
+      y: Number(layer.dataset.depth), ease: 'none',
+      scrollTrigger: { trigger: '.desk-scene', start: 'top top', end: 'bottom top', scrub: .6 },
+    })
+  })
+}))
+// Intrinsic sizes reserve space. Refresh measurements after deferred images resolve.
+document.querySelectorAll('main img').forEach((image) => {
+  image.addEventListener('load', () => ScrollTrigger.refresh(true), { once: true })
+})
 let layoutReady = false
 stylesReady.then(() => document.fonts.ready).then(() => {
   layoutReady = true

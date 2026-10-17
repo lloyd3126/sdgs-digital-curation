@@ -13,11 +13,7 @@ body, input, textarea, select, button { font-family: 'Noto Sans TC', sans-serif;
 .exhibition-scroll::-webkit-scrollbar-thumb:hover { background: var(--navy); }
 .topbar { height: var(--header-height); padding-inline: var(--scrollbar-space); }
 .icon { display: inline-block; width: 21px; height: 21px; flex: 0 0 auto; font-style: normal; vertical-align: middle; }
-.brand-symbol { display: flex; align-items: flex-end; gap: 3px; height: 23px; }
-.brand-symbol b { width: 5px; background: var(--ocean); }
-.brand-symbol b:nth-child(1) { height: 14px; }
-.brand-symbol b:nth-child(2) { height: 23px; }
-.brand-symbol b:nth-child(3) { height: 9px; }
+.brand-logo { display: block; width: 43px; height: 32px; object-fit: contain; }
 .nav a { display: inline-flex; align-items: center; min-height: 44px; font-size: 14px; text-decoration: none; border-bottom: 2px solid transparent; }
 .nav a:hover, .nav a[aria-current] { color: var(--ocean); border-bottom-color: var(--ocean); }
 .menu-toggle, .close-icon { display: none; }
@@ -26,7 +22,35 @@ body, input, textarea, select, button { font-family: 'Noto Sans TC', sans-serif;
 .read-progress span { display: block; height: 100%; background: var(--ocean); transform: scaleX(0); transform-origin: left; }
 .hero-rule > span:first-child { display: flex; align-items: center; gap: 8px; }
 .live-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--ocean); }
-.desk-art { height: auto; max-height: 510px; object-fit: contain; }
+/* A shared canvas keeps the approved tabletop composition intact. Motion acts
+   on the outer layer, separate from each image's calibrated placement. */
+.hero-art { position: relative; aspect-ratio: 3 / 2; }
+.hero-layers, .hero-layer { position: absolute; inset: 0; }
+.hero-layer img { display: block; width: 100%; height: 100%; transform-origin: 0 0; }
+.layer-tabletop img { transform: translateY(.88%); }
+.layer-lamp img { transform: translate(27.72%, -.15%) scale(.715); }
+.layer-notebook img { transform: translate(34.98%, 33.86%) scale(.67); }
+.hero-mobile { display: none; }
+.device-visual { width: 140px; height: 130px; flex: 0 0 140px; }
+.device-visual img { width: 100%; height: 100%; object-fit: contain; }
+.chapter-art { display: block; width: min(100%, 320px); height: 190px; object-fit: contain; margin: 28px auto 0; }
+.question-art { width: min(100%, 260px); height: 150px; margin-top: 20px; }
+.question-art img { width: 100%; height: 100%; object-fit: contain; }
+.note-art { max-width: 420px; padding-bottom: 28px; }
+.note-art img { width: 100%; height: 220px; object-fit: contain; }
+.note-art figcaption, .support-scenes figcaption { font-size: 14px; line-height: 1.8; margin-top: 16px; color: rgb(0 0 0 / .75); }
+.support-scenes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; padding-bottom: 28px; max-width: 780px; }
+.support-scenes img { width: 100%; height: 180px; object-fit: contain; }
+.closing-art { width: min(100%, 340px); height: 210px; object-fit: contain; }
+.feedback-art { display: block; width: 140px; height: 100px; object-fit: contain; }
+@media (min-width: 1024px) { .question-desk > div:first-child { grid-row: span 2; } }
+@media (max-width: 767px) {
+  .hero-layers { display: none; }
+  .hero-art { aspect-ratio: auto; height: clamp(280px, 85vw, 430px); }
+  .hero-mobile { display: block; width: 100%; height: 100%; }
+  .hero-mobile img { display: block; width: 100%; height: 100%; object-fit: contain; }
+  .support-scenes { grid-template-columns: 1fr; }
+}
 .everyday-links a { display: flex; align-items: flex-start; gap: 16px; border-top: 1px solid rgb(0 0 0 / .2); padding-block: 24px; text-decoration: none; }
 .everyday-links a > div { flex: 1; }
 .everyday-links a > div > span { font-weight: 600; }
@@ -55,7 +79,6 @@ details[open] > summary > .icon { transform: rotate(180deg); }
 }
 @media (max-width: 639px) {
   .hero-rule > span:last-child { display: none; }
-  .desk-art { max-height: 330px; }
   .hero h1 { font-size: clamp(29px, 8.2vw, 48px); }
   .hero-foot > span { max-width: 235px; }
 }

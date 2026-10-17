@@ -38,3 +38,9 @@ npm run preview
 ## Pro 視覺與觀眾流程
 
 Pro 使用 Tailwind CSS 4.3.0 CDN、Noto Sans TC 與 Lucide CDN。純白底，配色採三個藍色加黑白。導覽列與展覽捲動區分開。逐項 user story、修正狀態與剩餘限制見 [Pro 檢查紀錄](docs/pro-audit.md)。Tailwind CDN 依使用者要求採用，官方定位為開發用途，未來可保留現有 utilities 改為建置產生樣式。
+
+## Pro 插畫
+
+Pro 已套用生成的精簡動漫風格插畫與圓弧書頁 Logo。桌面主視覺使用四層 WebP，手機使用獨立直式構圖。設備圖與教育開銷圖會跟隨觀眾選擇切換，課後照顧、結語與回饋各有對應插畫。已提供分頁圖示與分享封面，並保留減少動態效果的靜態呈現。
+
+實作與素材對照見 [Pro 插畫套用紀錄](docs/pro-artwork.md)。原首頁維持不變。
