@@ -42,14 +42,18 @@ body, input, textarea, select, button { font-family: 'Noto Sans TC', sans-serif;
 .layer-tabletop img { transform: translateY(.88%); }
 .layer-lamp img { transform: translate(27.72%, -.15%) scale(.715); }
 .layer-notebook img { transform: translate(34.98%, 33.86%) scale(.67); }
-.hero-mobile { display: none; }
 .closing-art { display: block; width: min(100%, 300px); height: auto; }
 
 @media (max-width: 767px) {
-  .hero-layers { display: none; }
-  .hero-art { aspect-ratio: auto; height: clamp(280px, 85vw, 430px); }
-  .hero-mobile { display: block; width: 100%; height: 100%; }
-  .hero-mobile img { display: block; width: 100%; height: 100%; object-fit: contain; }
+  .hero { padding-top: 16px; }
+  .hero-rule { padding-bottom: 12px; }
+  .hero-grid { padding-block: 16px; align-content: center; }
+  .hero-copy { min-width: 0; padding-block: 0; }
+  .hero-copy .eyebrow { margin-bottom: 12px; }
+  .hero-intro { margin-top: 16px; font-size: 16px; line-height: 1.8; }
+  .hero-description { font-size: 14px; line-height: 1.8; }
+  .hero-copy > .button { min-height: 48px; margin-top: 20px; }
+  .hero-foot { min-height: 48px; }
 }
 .everyday-links a { display: flex; align-items: flex-start; gap: 16px; border-top: 1px solid rgb(0 0 0 / .2); padding-block: 24px; text-decoration: none; }
 .everyday-links a > div { flex: 1; }
@@ -84,7 +88,6 @@ details[open] > summary > .icon { transform: rotate(180deg); }
 @media (max-width: 639px) {
   .hero-rule > span:last-child { display: none; }
   .hero h1 { font-size: clamp(29px, 8.2vw, 48px); }
-  .hero-foot > span { max-width: 235px; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
