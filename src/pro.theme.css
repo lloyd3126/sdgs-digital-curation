@@ -41,10 +41,11 @@
   .chapter-scene > .text-link { @apply justify-self-end; }
   .chapter-actions { @apply flex flex-wrap items-center justify-between gap-4; }
   .chapter-actions > a:last-child { @apply ml-auto; }
-  .chapter-grid { @apply grid items-start gap-10 lg:grid-cols-2 lg:gap-16; }
+  .chapter-grid { @apply grid items-start gap-9 lg:grid-cols-2 lg:gap-16; }
   .chapter-copy > p { @apply my-9 max-w-xl text-base leading-loose text-black/75; }
   .chapter-copy > p + p { @apply mt-0; }
   .chapter-copy > p:has(+ p) { @apply mb-6; }
+  .chapter-copy > p:last-child { @apply mb-0; }
   .illustrated-chapter > .chapter-copy { @apply flex flex-col; }
   .illustrated-chapter .chapter-copy > p { @apply max-w-none; }
   .illustrated-chapter > figure { @apply flex flex-col; }
@@ -72,7 +73,7 @@
   .expense-row strong { @apply text-3xl font-semibold tracking-tight tabular-nums text-ocean; }
   .expense-row small { @apply ml-2 text-sm font-normal text-black/75; }
   .expense-average strong { @apply text-navy; }
-  .question-options { @apply flex flex-wrap content-start gap-2; }
+  .question-options { @apply grid gap-2 md:flex md:flex-wrap md:content-start; }
   .question-options button { @apply min-h-11 rounded-full border border-black/30 px-4 py-2 text-sm font-medium transition-colors hover:bg-navy hover:text-white; }
   .question-answer { @apply text-base leading-loose text-black/75; }
   .school-figure figcaption { @apply flex flex-wrap items-center justify-between gap-4 text-sm; }
@@ -83,6 +84,7 @@
   .rating-field legend, .form-field label { @apply mb-3 text-base font-medium leading-relaxed; }
   .rating-field legend { @apply w-full; }
   .field-label-row, .form-field label { @apply flex w-full items-baseline justify-between gap-3; }
+  .form-field label { @apply text-balance; }
   .required-label, .form-field label > span { @apply shrink-0 text-sm font-normal text-black/75; }
   .rating-options { @apply flex gap-2; }
   .rating-options label { @apply relative min-w-0 flex-1 cursor-pointer; }

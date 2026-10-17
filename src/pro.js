@@ -230,7 +230,7 @@ const dialogTitle = dialog.querySelector('#dialog-title')
 const dialogViews = {
   'spending-questions': { title: '看到這筆帳單，你會先問什麼？', template: 'spending-questions', answers },
   'support-access': { title: '學校課後照顧如何安排？', template: 'support-access', answers: supportAnswers, reference: 'https://edu.law.moe.gov.tw/LawContent.aspx?id=GL000660' },
-  'source-households': { title: '家庭的電腦、網路與教育開銷', source: '#source-households .source-body' },
+  'source-households': { title: '電腦網路與教育開銷', source: '#source-households .source-body' },
   'source-support': { title: '國小開辦課後照顧的情況', source: '#source-support .source-body' },
 }
 let dialogOpener = null
