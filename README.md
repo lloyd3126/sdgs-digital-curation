@@ -9,7 +9,7 @@
 - 觀展回饋表單已串接使用者部署的 Google Apps Script Web App，欄位不收集姓名或聯絡方式。由於 Apps Script 的跨網域回應無法由靜態頁讀取，網站會如實提示「請求已送出、寫入尚未確認」，不會冒稱試算表已成功新增資料。
 - GitHub Pages 已部署並確認可用；正式網址見下方「發布」區段。
 - Apps Script 將由使用者直接在瀏覽器中設定；本專案不使用 Clasp。
-- 另建獨立的 `/pro/` 展覽頁面，使用 `pro/index.html`、`src/pro.js` 與 `src/pro.css`。原首頁的 HTML、CSS 與 JavaScript 保留，兩頁由 Vite 分別建置。
+- 獨立的 `/pro/` 頁面名稱為「寫不完的作業」，以家庭設備、教育開銷與課後照顧串起孩子寫作業前的準備。使用 `pro/index.html`、`src/pro.js`、`src/pro.css` 與 `src/pro.theme.css`。原首頁的 HTML、CSS 與 JavaScript 保留，兩頁由 Vite 分別建置。
 
 ## 本機開發
 
@@ -41,6 +41,6 @@ Pro 使用 Tailwind CSS 4.3.0 CDN、Noto Sans TC 與 Lucide CDN。純白底，�
 
 ## Pro 插畫
 
-Pro 已套用生成的精簡動漫風格插畫與圓弧書頁 Logo。桌面主視覺使用四層 WebP，手機使用獨立直式構圖。設備圖與教育開銷圖會跟隨觀眾選擇切換，課後照顧、結語與回饋各有對應插畫。已提供分頁圖示與分享封面，並保留減少動態效果的靜態呈現。
+Pro 保留生成的精簡動漫風格主視覺、圓弧書頁 Logo 與結尾插畫。桌面主視覺使用四層 WebP，手機使用獨立直式構圖。三個主要章節以文字和互動圖表呈現，延伸問題與資料說明共用 modal，引用連結放在相關段落。頁面載入時等待 CDN、樣式與字體準備完成，並尊重減少動態效果設定。已提供分頁圖示與分享封面。
 
 實作與素材對照見 [Pro 插畫套用紀錄](docs/pro-artwork.md)。原首頁維持不變。
