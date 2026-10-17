@@ -205,3 +205,54 @@ motionMedia.add({
 
   requestAnimationFrame(() => ScrollTrigger.refresh())
 })
+
+const feedbackForm = document.querySelector('[data-feedback-form]')
+const feedbackStatus = document.querySelector('[data-feedback-status]')
+const feedbackSubmit = document.querySelector('[data-feedback-submit]')
+const feedbackEndpoint = import.meta.env.VITE_APPS_SCRIPT_URL?.trim()
+
+if (feedbackForm && feedbackStatus && feedbackSubmit) {
+  if (!feedbackEndpoint) {
+    feedbackStatus.textContent = '回饋服務尚未設定，請稍後再試或聯絡策展團隊。'
+    feedbackSubmit.disabled = true
+  }
+
+  feedbackForm.addEventListener('submit', async (event) => {
+    event.preventDefault()
+    if (!feedbackEndpoint || !feedbackForm.reportValidity()) return
+
+    const formData = new FormData(feedbackForm)
+    const payload = {
+      rating: Number(formData.get('rating')),
+      chapter: formData.get('chapter'),
+      reflection: formData.get('reflection').trim(),
+      suggestion: formData.get('suggestion').trim(),
+    }
+
+    feedbackSubmit.disabled = true
+    feedbackStatus.dataset.state = 'sending'
+    feedbackStatus.textContent = '正在送出，請稍候……'
+
+    try {
+      const response = await fetch(feedbackEndpoint, {
+        method: 'POST',
+        mode: 'no-cors',
+        credentials: 'omit',
+        body: JSON.stringify(payload),
+      })
+
+      if (response.type !== 'opaque') {
+        throw new Error('無法確認回饋服務的回應。')
+      }
+
+      feedbackStatus.dataset.state = 'sent'
+      feedbackStatus.textContent = '瀏覽器已送出回應，但 Google 的跨網域限制讓此頁無法確認是否寫入試算表。若需確認，請查看回饋試算表；若沒有新紀錄，請保留內容並稍後重送。'
+      feedbackSubmit.textContent = '重新送出回應 ↗'
+    } catch {
+      feedbackStatus.dataset.state = 'error'
+      feedbackStatus.textContent = '目前無法送出。請檢查網路連線後重試；表單內容仍保留。'
+    } finally {
+      feedbackSubmit.disabled = false
+    }
+  })
+}

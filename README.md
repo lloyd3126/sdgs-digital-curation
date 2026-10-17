@@ -6,7 +6,7 @@
 
 - 已完成響應式展覽頁面雛形，採原生 HTML/CSS/JavaScript、Vite 與 GSAP／ScrollTrigger。
 - 展覽主題為「放學以後：完成一份作業，需要哪些條件？」；內容使用 2024 年家庭設備／教育支出資料與 113 學年度課後照顧統計，並在頁面標示來源及資料限制。
-- 觀展回饋表單與 Google Apps Script／Sheets 串接尚未實作。
+- 觀展回饋表單已串接使用者部署的 Google Apps Script Web App，欄位不收集姓名或聯絡方式。由於 Apps Script 的跨網域回應無法由靜態頁讀取，網站會如實提示「請求已送出、寫入尚未確認」，不會冒稱試算表已成功新增資料。
 - GitHub Pages 已部署並確認可用；正式網址見下方「發布」區段。
 - Apps Script 將由使用者直接在瀏覽器中設定；本專案不使用 Clasp。
 
@@ -24,10 +24,10 @@ npm run build
 npm run preview
 ```
 
-設定本機回饋端點時，複製 `.env.example` 為 `.env.local`，再填入 Apps Script Web App URL。此 URL 會出現在前端建置內容中，請勿把它當作存放秘密憑證的方式。
+設定本機回饋端點時，在 `.env.local` 設定 `VITE_APPS_SCRIPT_URL` 為 Apps Script Web App URL。此 URL 會出現在前端建置內容中，請勿把它當作存放秘密憑證的方式。
 
 ## 發布
 
-推送至 `main` 後，GitHub Actions 會建置並部署到 GitHub Pages。設定回饋端點時，請在 GitHub repository variables 建立 `APPS_SCRIPT_URL`。
+推送至 `main` 後，GitHub Actions 會建置並部署到 GitHub Pages。部署回饋表單前，請在 GitHub repository variables 建立 `APPS_SCRIPT_URL`，值為 Apps Script Web App URL；此值是公開端點，不是秘密憑證。
 
 **GitHub Pages：[https://lloyd3126.github.io/sdgs-digital-curation/](https://lloyd3126.github.io/sdgs-digital-curation/)**

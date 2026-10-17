@@ -201,6 +201,55 @@
         <div class="closing-section__graphic" aria-hidden="true"><span class="closing-ring closing-ring--one"></span><span class="closing-ring closing-ring--two"></span><span class="closing-ring closing-ring--three"></span><span class="closing-cross">+</span><span class="closing-note">一個問題<br />還沒結束。</span></div>
       </section>
 
+      <section class="feedback-section" id="feedback" aria-labelledby="feedback-title">
+        <div class="feedback-section__index"><span>觀展回應</span><span>YOUR NOTE / 01</span></div>
+        <div class="feedback-section__content">
+          <div class="feedback-section__intro">
+            <p class="eyebrow">LEAVE A THOUGHT</p>
+            <h2 id="feedback-title">放學以後，<br /><em>你帶走了什麼？</em></h2>
+            <p>你的回應會幫助策展團隊理解哪些提問留在觀眾心裡，並作為後續修整展覽的參考。</p>
+            <div class="feedback-section__privacy"><span aria-hidden="true">↳</span><p>不需填寫姓名或聯絡方式。請勿輸入可辨識個人身分的資訊；送出的內容會記錄在策展團隊的 Google 試算表。</p></div>
+          </div>
+
+          <form class="feedback-form" data-feedback-form>
+            <div class="feedback-form__row">
+              <div class="feedback-field">
+                <label for="feedback-rating">這次觀展對你有多少啟發？</label>
+                <select id="feedback-rating" name="rating" required>
+                  <option value="" selected disabled>選擇 1–5 分</option>
+                  <option value="1">1 — 還沒有新的想法</option>
+                  <option value="2">2 — 有一點觸動</option>
+                  <option value="3">3 — 開始注意這個問題</option>
+                  <option value="4">4 — 帶走了新的觀點</option>
+                  <option value="5">5 — 想繼續了解或採取行動</option>
+                </select>
+              </div>
+              <div class="feedback-field">
+                <label for="feedback-chapter">哪個展間最讓你停下來想？</label>
+                <select id="feedback-chapter" name="chapter" required>
+                  <option value="" selected disabled>選擇一個展間</option>
+                  <option value="家中設備">展間 01・家中設備</option>
+                  <option value="家庭支出">展間 02・家庭支出</option>
+                  <option value="家外支持">展間 03・家外支持</option>
+                </select>
+              </div>
+            </div>
+            <div class="feedback-field">
+              <label for="feedback-reflection">觀展後的新想法或疑問 <span>選填</span></label>
+              <textarea id="feedback-reflection" name="reflection" maxlength="1500" rows="4" placeholder="哪一個細節讓你想到自己的生活？"></textarea>
+            </div>
+            <div class="feedback-field">
+              <label for="feedback-suggestion">給策展團隊的建議 <span>選填</span></label>
+              <textarea id="feedback-suggestion" name="suggestion" maxlength="1500" rows="3" placeholder="還有什麼你希望我們補充或說明？"></textarea>
+            </div>
+            <div class="feedback-form__actions">
+              <button class="feedback-submit" type="submit" data-feedback-submit>送出觀展回應 <span aria-hidden="true">↗</span></button>
+              <p class="feedback-status" data-feedback-status role="status" aria-live="polite">評分與展間為必填，其餘欄位可自由留白。</p>
+            </div>
+          </form>
+        </div>
+      </section>
+
       <section class="sources-section" id="sources" aria-labelledby="sources-title">
         <div class="sources-section__heading"><div><p class="eyebrow">NOTES & SOURCES</p><h2 id="sources-title">資料從哪裡來</h2></div><span>來源・定義・限制</span></div>
         <div class="source-list">
