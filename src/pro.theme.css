@@ -27,6 +27,7 @@
   .dialog-close-button { @apply inline-flex h-11 items-center justify-center rounded-lg border border-navy/30 bg-white px-5 text-sm font-medium text-navy transition-colors hover:border-navy hover:bg-navy/5; }
   .eyebrow { @apply mb-5 text-sm font-semibold leading-relaxed tracking-wide text-ocean; }
   .highlight, .accent { @apply text-ocean; }
+  .hero { @apply grid min-h-[calc(100dvh-var(--header-height))] grid-rows-[auto_1fr_auto]; }
   .opening { @apply grid min-h-[calc(100dvh-var(--header-height))] grid-rows-[auto_1fr_auto] gap-9; }
   .takeaway { @apply grid min-h-[calc(100dvh-var(--header-height))] grid-rows-[auto_1fr_auto] gap-9 py-10 lg:py-12; }
   .takeaway-narrative { @apply flex flex-col items-center justify-center gap-9; }
