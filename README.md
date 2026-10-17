@@ -7,7 +7,7 @@
 - 已完成響應式展覽頁面雛形，採原生 HTML/CSS/JavaScript、Vite 與 GSAP／ScrollTrigger。
 - 展覽主題為「放學以後：完成一份作業，需要哪些條件？」；內容使用 2024 年家庭設備／教育支出資料與 113 學年度課後照顧統計，並在頁面標示來源及資料限制。
 - 觀展回饋表單與 Google Apps Script／Sheets 串接尚未實作。
-- GitHub Pages 尚未部署；正式網址會在首次部署並確認可用後補上。
+- GitHub Pages 已部署並確認可用；正式網址見下方「發布」區段。
 - Apps Script 將由使用者直接在瀏覽器中設定；本專案不使用 Clasp。
 
 ## 本機開發
@@ -28,6 +28,6 @@ npm run preview
 
 ## 發布
 
-推送至 `main` 後，GitHub Actions 會建置並部署到 GitHub Pages。設定回饋端點時，請在 GitHub repository variables 建立 `APPS_SCRIPT_URL`。首次發布後，請在此補上已驗證可用的 Pages 網址。
+推送至 `main` 後，GitHub Actions 會建置並部署到 GitHub Pages。設定回饋端點時，請在 GitHub repository variables 建立 `APPS_SCRIPT_URL`。
 
-**GitHub Pages：尚未部署**
+**GitHub Pages：[https://lloyd3126.github.io/sdgs-digital-curation/](https://lloyd3126.github.io/sdgs-digital-curation/)**
