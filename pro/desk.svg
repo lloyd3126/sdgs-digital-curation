@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 690" fill="none">
+  <defs>
+    <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M32 0H0V32" stroke="#47665a" stroke-opacity=".32"/></pattern>
+    <pattern id="paper" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0V24" stroke="#b4bfb2" stroke-opacity=".45"/></pattern>
+    <linearGradient id="light" x1="537" y1="135" x2="414" y2="492" gradientUnits="userSpaceOnUse"><stop stop-color="#f1d88d" stop-opacity=".24"/><stop offset="1" stop-color="#f1d88d" stop-opacity="0"/></linearGradient>
+    <linearGradient id="screen" x1="150" y1="206" x2="436" y2="429" gradientUnits="userSpaceOnUse"><stop stop-color="#e6eee0"/><stop offset="1" stop-color="#b7c9b7"/></linearGradient>
+  </defs>
+  <circle cx="385" cy="315" r="248" stroke="#dbe7cd" stroke-opacity=".15"/>
+  <circle cx="385" cy="315" r="195" stroke="#dbe7cd" stroke-opacity=".12" stroke-dasharray="3 8"/>
+  <path d="M55 412L477 317L695 485L265 623Z" fill="#668677"/>
+  <path d="M55 412L477 317L695 485L265 623Z" fill="url(#grid)"/>
+  <path d="M55 412V434L265 646L695 507V485L265 623Z" fill="#426452"/>
+  <path d="M265 623V646L695 507V485Z" fill="#315847"/>
+  <path d="M99 450L296 602L494 543L299 397Z" fill="#244e42" fill-opacity=".45"/>
+  <g transform="rotate(-9 285 350)">
+    <path d="M132 204Q132 191 145 191H414Q427 191 427 204V416H132Z" fill="#0d2928"/>
+    <rect x="145" y="207" width="269" height="194" rx="4" fill="url(#screen)"/>
+    <circle cx="278" cy="200" r="2" fill="#789b88"/>
+    <path d="M132 416H427L466 452Q469 459 460 460H100Q92 459 96 452Z" fill="#92a493"/>
+    <path d="M147 425H414L435 445H122Z" fill="#466657"/>
+    <path d="M157 431H406M145 438H420M177 426L167 445M208 426L202 445M241 426L238 445M275 426V445M310 426L313 445M344 426L351 445M379 426L390 445" stroke="#91a38e" stroke-width="2"/>
+    <path d="M244 449H312L319 456H238Z" fill="#667f6e"/>
+    <path d="M157 224H402" stroke="#91aa96"/>
+    <circle cx="163" cy="217" r="2" fill="#ed7352"/><circle cx="171" cy="217" r="2" fill="#d3b959"/><circle cx="179" cy="217" r="2" fill="#789b88"/>
+    <rect x="172" y="241" width="215" height="131" rx="3" fill="#f2f0dd"/>
+    <rect x="188" y="257" width="75" height="6" rx="3" fill="#244e42"/>
+    <rect x="188" y="275" width="169" height="3" rx="1.5" fill="#bfc6af"/>
+    <rect x="188" y="286" width="148" height="3" rx="1.5" fill="#bfc6af"/>
+    <rect x="188" y="315" width="121" height="36" rx="4" fill="#d8e1ca"/>
+    <circle cx="205" cy="333" r="7" stroke="#426452" stroke-width="2"/><path d="M205 329V333L208 335" stroke="#426452" stroke-linecap="round"/>
+    <text x="220" y="338" font-family="sans-serif" font-size="13" fill="#244e42">等一下，換你用。</text>
+  </g>
+  <path d="M550 131L412 426L637 453Z" fill="url(#light)"/>
+  <path d="M610 437C640 437 657 449 653 456C645 472 585 475 571 462C562 453 581 439 610 437Z" fill="#102e2b" fill-opacity=".5"/>
+  <ellipse cx="600" cy="442" rx="40" ry="14" fill="#e16c43"/>
+  <path d="M560 437V443C560 454 640 454 640 443V437" fill="#b5482a"/>
+  <ellipse cx="600" cy="437" rx="40" ry="13" fill="#ec8152"/>
+  <path d="M600 430V302L554 195" stroke="#d55f35" stroke-width="13" stroke-linecap="round"/>
+  <path d="M598 426V303L551 194" stroke="#ed9560" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="600" cy="303" r="11" fill="#f4a878"/><circle cx="600" cy="303" r="4" fill="#9c452c"/>
+  <path d="M523 126C532 105 550 100 563 110C585 126 591 160 586 184L495 157Z" fill="#f07444"/>
+  <path d="M495 157C499 142 584 168 586 184C574 200 498 173 495 157Z" fill="#d35a36"/>
+  <ellipse cx="540" cy="170" rx="43" ry="10" transform="rotate(17 540 170)" fill="#ffe0a0"/>
+  <path d="M510 141C517 120 532 108 545 110" stroke="#ffb888" stroke-width="5" stroke-linecap="round"/>
+  <g transform="rotate(14 441 497)">
+    <path d="M364 440L475 432L493 549L379 563Z" fill="#112f2b" fill-opacity=".28"/>
+    <path d="M348 427L462 419L480 539L365 551Z" fill="#efe9cf"/>
+    <path d="M348 427L462 419L480 539L365 551Z" fill="url(#paper)"/>
+    <path d="M355 429L371 547" stroke="#dd6d45" stroke-width="2"/>
+    <text x="368" y="456" font-size="17" font-family="serif" fill="#244e42">今天的作業</text>
+    <path d="M371 474L444 467M373 487L453 480M377 501L441 495M379 515L451 508" stroke="#9da992" stroke-width="1.5"/>
+    <circle cx="454" cy="526" r="8" stroke="#d76740" stroke-width="1.5"/>
+  </g>
+  <path d="M509 463L559 528L552 534L502 469Z" fill="#ee9c48"/><path d="M509 463L516 472L509 478L502 469Z" fill="#e36842"/><path d="M559 528L562 541L552 534Z" fill="#e9d7aa"/><path d="M562 541L559 537L558 539Z" fill="#173b36"/>
+  <g transform="rotate(-12 200 531)"><rect x="151" y="493" width="95" height="73" fill="#f1bf4e"/><path d="M170 516H223M170 529H214M170 542H201" stroke="#8c6d28" stroke-width="2"/><path d="M231 493V505H246" fill="#d1a03e"/></g>
+  <path d="M74 352H88M81 345V359M634 230H648M641 223V237" stroke="#b3c5a6" stroke-width="2"/>
+  <circle cx="462" cy="95" r="4" fill="#f2ba70"/>
+</svg>

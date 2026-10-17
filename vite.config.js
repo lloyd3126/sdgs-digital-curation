@@ -1,4 +1,5 @@
 import { defineConfig } from 'vite'
+import { fileURLToPath } from 'node:url'
 
 const repositoryName = process.env.GITHUB_REPOSITORY?.split('/')[1]
 const basePath = process.env.VITE_BASE_PATH
@@ -8,4 +9,12 @@ const basePath = process.env.VITE_BASE_PATH
 
 export default defineConfig({
   base: basePath,
+  build: {
+    rolldownOptions: {
+      input: {
+        main: fileURLToPath(new URL('./index.html', import.meta.url)),
+        pro: fileURLToPath(new URL('./pro/index.html', import.meta.url)),
+      },
+    },
+  },
 })

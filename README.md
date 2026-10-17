@@ -9,6 +9,7 @@
 - 觀展回饋表單已串接使用者部署的 Google Apps Script Web App，欄位不收集姓名或聯絡方式。由於 Apps Script 的跨網域回應無法由靜態頁讀取，網站會如實提示「請求已送出、寫入尚未確認」，不會冒稱試算表已成功新增資料。
 - GitHub Pages 已部署並確認可用；正式網址見下方「發布」區段。
 - Apps Script 將由使用者直接在瀏覽器中設定；本專案不使用 Clasp。
+- 另建獨立的 `/pro/` 展覽頁面，使用 `pro/index.html`、`src/pro.js` 與 `src/pro.css`。原首頁的 HTML、CSS 與 JavaScript 保留，兩頁由 Vite 分別建置。
 
 ## 本機開發
 
@@ -31,3 +32,5 @@ npm run preview
 推送至 `main` 後，GitHub Actions 會建置並部署到 GitHub Pages。部署回饋表單前，請在 GitHub repository variables 建立 `APPS_SCRIPT_URL`，值為 Apps Script Web App URL；此值是公開端點，不是秘密憑證。
 
 **GitHub Pages：[https://lloyd3126.github.io/sdgs-digital-curation/](https://lloyd3126.github.io/sdgs-digital-curation/)**
+
+**Pro 頁面：[https://lloyd3126.github.io/sdgs-digital-curation/pro/](https://lloyd3126.github.io/sdgs-digital-curation/pro/)**
